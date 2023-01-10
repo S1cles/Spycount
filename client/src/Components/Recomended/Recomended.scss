@@ -1,0 +1,29 @@
+.recomended {
+    display: flex;
+    flex-direction: column;
+    margin: 100px;
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h1{
+            flex: 2;
+            font-size: 32px;
+            text-transform: capitalize;
+        }
+        p{
+            flex: 3;
+            color: rgb(136, 136, 136);
+            // max-width: 500px;
+            text-align: center;
+        }
+    }
+    .content{
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-around;
+        border: 3px solid gray;
+        border-radius: 20px;
+    }
+}
+

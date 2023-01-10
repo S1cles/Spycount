@@ -29,7 +29,7 @@ const Navbar = () => {
           </nav>
         </div>
         <div className="center_side flex">
-          <NavLink to={"/"}>SPYCOUNT</NavLink>
+          <NavLink style={{marginLeft: '30px',marginRight: '30px'}} to={"/"}>SPYCOUNT</NavLink>
         </div>
         <div className="right_side flex">
           <nav className="nav2 item ">

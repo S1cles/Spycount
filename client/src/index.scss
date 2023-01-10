@@ -1,17 +1,24 @@
-*{
-    font-family: Oswald;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  font-family: Oswald;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-body{
-    overflow-x:hidden;
+body {
+  overflow-x: hidden;
 }
-a{
-    text-decoration: none;
-    color: black;
+a {
+  text-decoration: none;
+  color: black;
 }
 .flex {
-    display:flex;
-  }
+  display: flex;
+}
+.wrapper {
+  max-width: 90%;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
 //   rgb(200, 250, 250);
