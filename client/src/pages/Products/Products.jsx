@@ -2,7 +2,16 @@ import React from 'react'
 
 const Products = () => {
   return (
-    <div>Products</div>
+    <div>
+      <nav className='menu'>
+        <div className="filterItems">
+          
+        </div>
+      </nav>
+      <div className="content">
+
+      </div>
+    </div>
   )
 }
 

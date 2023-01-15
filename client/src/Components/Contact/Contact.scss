@@ -1,0 +1,33 @@
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(142, 249, 249);
+  min-height: 80px;
+  .wrap {
+    max-width: 1000px;
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    .left {
+      text-transform:uppercase;
+    }
+    .center {
+      input {
+        border: none;
+        border-radius: 10px 0 0 10px;
+        padding: 10px;
+      }
+      button {
+        border: none;
+        border-radius: 0 10px 10px 0;
+        padding: 10px;
+        background: yellow;
+      }
+    }
+    .right {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
