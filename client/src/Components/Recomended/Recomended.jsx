@@ -64,7 +64,8 @@ const Recomended = (props) => {
           <div className="content">
             {data.map((item) => (
               <Card item={item} key={item.id} />
-            ))}
+            ))
+            }
             
           </div>
         </div>

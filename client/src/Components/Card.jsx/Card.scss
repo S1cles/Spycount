@@ -1,9 +1,14 @@
+@keyframes move {
+  from { z-index: 0;opacity: 0.4; transform: scale(1); }
+  to { z-index: 4; opacity: 1; transform: scale(1); }
+}
 .card {
   width: 250px;
   gap: 20px;
   display: flex;
   flex-direction: column;
   margin: 20px;
+  transition: all ease-in-out 2s;
   .info{
     text-align: center;
     .prices{
@@ -16,9 +21,11 @@
     height: 400px;
     overflow: hidden;
     position: relative;
+    transition: all ease-in-out 2s;
     &:hover{
         .second-img{
             z-index: 2;
+            animation: move 1s linear  alternate ; 
         }
     }
     span{

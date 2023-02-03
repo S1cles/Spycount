@@ -34,7 +34,7 @@ function App() {
           element:<Product/>
         },
         {
-          path:'/Products/:id',
+          path:'/products/:id',
           element:<Products/>
         },
         {

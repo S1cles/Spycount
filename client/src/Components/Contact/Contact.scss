@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: rgb(142, 249, 249);
+  background-color: rgb(255, 201, 41);
   min-height: 80px;
   .wrap {
     max-width: 1000px;
@@ -23,7 +23,13 @@
         border-radius: 0 10px 10px 0;
         padding: 10px;
         background: yellow;
+        cursor: pointer;
+        &:hover{
+          opacity: 0.8;
+          scale: 1.1;
+        }
       }
+
     }
     .right {
       display: flex;

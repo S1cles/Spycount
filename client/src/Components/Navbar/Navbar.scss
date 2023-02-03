@@ -13,6 +13,7 @@
 }
 .lang,.valute{
     margin-right: 25px;
+    display: flex;
 }
 .valute{
     align-items: center ;
@@ -41,15 +42,32 @@
 }
 .navbar{
     height: 80px;
+    border-bottom: 1px rgb(179, 179, 179) solid;
+
    .wrap{
     padding:  5px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 30px;
+    position: relative;
     .item{
         display: flex;
         align-items: center;
         gap: 25px;
     }
    }
+}
+
+
+
+.popup{
+    position: absolute;
+    right: 30px;
+    width: 400px;
+    height: 500px;
+    background-color: rgba(255, 196, 0,0.8);
+    border-radius: 20px;
+    padding: 20px;
+
 }
