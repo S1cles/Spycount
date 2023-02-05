@@ -65,9 +65,8 @@
     position: absolute;
     right: 30px;
     width: 400px;
-    height: 500px;
     background-color: rgba(255, 196, 0,0.8);
     border-radius: 20px;
-    padding: 20px;
-
+    padding: 10px;
+    z-index: 9999;
 }

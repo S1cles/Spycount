@@ -27,6 +27,8 @@ const Products = () => {
   let trans = 'logo'
   if (scrollTop >= 100) {
     trans += '-scroll';
+  }else if (scrollTop < 100 && scrollTop >= 0){
+    trans += '-rscroll';
   }
 
   return (

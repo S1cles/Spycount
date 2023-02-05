@@ -29,12 +29,12 @@
 
     }
 }
-.logo{
-display: block;
-visibility: hidden;
-margin-top: 100px;
+// .logo{
+// display: block;
+// visibility: hidden;
+// margin-top: 100px;
 
-}
+// }
 .logo-scroll{
   display: block;
   font-size: 36px !important;
@@ -43,6 +43,14 @@ margin-top: 100px;
   color: black !important;
   display: flex;
   justify-content: center;
-  transition: 2s;
-
+  transition: 1s;
+}
+.logo-rscroll{
+  display: block;
+  visibility: hidden;
+  color: black !important;
+  display: flex;
+  justify-content: center;
+  transition: 0.1s;
+  margin-top: 100px;
 }
