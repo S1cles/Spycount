@@ -40,14 +40,15 @@
         "audios"
       ]
     },
+    "price": {
+      "default": 0,
+      "type": "decimal"
+    },
     "isNew": {
       "type": "boolean",
       "default": false
     },
     "oldPrice": {
-      "type": "decimal"
-    },
-    "price": {
       "type": "decimal"
     },
     "categories": {

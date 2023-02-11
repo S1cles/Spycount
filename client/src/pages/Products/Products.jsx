@@ -4,54 +4,53 @@ import List from "../../Components/List/List.jsx";
 import "./Products.scss";
 import { Slider } from "@mui/material";
 import { yellow } from "@mui/material/colors";
+import useFetch from "../../Components/hooks/useFetch.js";
 
 const Products = () => {
-  const Categoryid = parseInt(useParams().id);
+  const catId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState(null);
 
-  const [scrollTop, setScrollTop] = useState(0);
+  const { products, loading, error } = useFetch(
+    `/sub-categories?[filters][categories][id][$eq]=${catId}`
+  );
 
+  console.log(products);
+
+  const [scrollTop, setScrollTop] = useState(0);
   useEffect(() => {
     const handleScroll = (event) => {
       setScrollTop(window.scrollY);
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  let trans = 'logo'
+  let trans = "logo";
   if (scrollTop >= 100) {
-    trans += '-scroll';
-  }else if (scrollTop < 100 && scrollTop >= 0){
-    trans += '-rscroll';
+    trans += "-scroll";
+  } else if (scrollTop < 100 && scrollTop >= 0) {
+    trans += "-rscroll";
   }
 
   return (
     <div className="products">
       <nav>
         {/* {scrollTop >= 150 ? <h2 className="logo">SPYCOUNT</h2> : <div className="logo" style={{color:'white'}} >SPYCOUNT</div>} */}
-        <div className={trans} style={{color:'white'}} >SPYCOUNT</div>
+        <div className={trans} style={{ color: "white" }}>
+          SPYCOUNT
+        </div>
         <div className="menu">
           <div className="filterItems">
             <div className="filter_item">
               <h2>Product Categories</h2>
-              <div className="input_item">
-                <input type="checkbox" id="1" value={1} />
-                <label htmlFor="1">Shoes</label>
-              </div>
-              <div className="input_item">
-                <input type="checkbox" id="2" value={2} />
-                <label htmlFor="2">Coats</label>
-              </div>{" "}
-              <div className="input_item">
-                <input type="checkbox" id="3" value={3} />
-                <label htmlFor="3">Skirts</label>
-              </div>
+              {products?.data?.map(subcat => 
+                <div className="input_item" key={subcat.id}>
+                  <input type="checkbox" id={subcat.id} value={subcat.id} />
+                  <label htmlFor={subcat.id}>{subcat.attributes.title}</label>
+                </div>
+              )}
             </div>
             <div className="filter_item">
               <h2>Filter by Price</h2>
@@ -101,7 +100,7 @@ const Products = () => {
           alt="mainImg"
           className="categoryImg"
         />
-        <List Categoryid={Categoryid} maxPrice={maxPrice} sort={sort} />
+        <List Categoryid={catId} maxPrice={maxPrice} sort={sort} />
       </div>
     </div>
   );

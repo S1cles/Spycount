@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./Recomended.scss";
 import Card from "./../Card.jsx/Card";
 import axios from "axios";
+import useFetch from "./../hooks/useFetch";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const Recomended = (props) => {
-  const API_TOKEN =
-    "662a9da5b0609d2f2c7204cf43aed6c2f8db3d626becbf8a1be77065ab6f936ecfcbd05c5a7b1975e535d6e394f3e9ec8689c786cc17f447c9887049f968ea08d9eb7c9ac10e06ceba129bd32da7a5ee494c61cb0cbd3d10ae91d2dd1f428a291c35d27abf14767f0806487c12d1a31ee1d3591b4a11b103f1d44924af8df1b6";
-  // const API_TOKEN2 = '3d7c7870e2954e5bdbfafac327eff305f4b17c323e823c7aef698b53a450b1542c0fb4d6a93db078aeaa0e71c67a44462e80f79cbc276024e6280f8f09d8323e06a5d6a9318a8156c94934cb91e835ca5ee897b233d03a109dc42e1101a6d309997b7080e63078863cafe1bfbbb2a50b035b2a56adf7b54f75ec27e7886a6ff4'
-  const API_URL = "http://localhost:1337/api";
   // const data = [
   //   {
   //     id: 1,
@@ -47,7 +46,7 @@ const Recomended = (props) => {
   //   },
   // ];
 
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
 
   // useEffect(() => {
 
@@ -68,31 +67,34 @@ const Recomended = (props) => {
   // fetchData()
   // }, [])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(API_URL + "/products", {
-          headers: {
-            Authorization: "Bearer " + API_TOKEN,
-          },
-        });
-        setProducts(res.data);
-        // console.log(res.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
-    console.log(products.data);
-  const nameBlock = props.type;
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await axios.get(process.env.REACT_APP_API_URL + `/products?populate=*&[filters][type][$eq]=${props.type}`, {
+  //         headers: {
+  //           Authorization: "Bearer " + process.env.REACT_APP_API_TOKEN,
+  //         },
+  //       });
+  //       setProducts(res.data);
+  //       // console.log(res.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+  //   console.log(products.data);
 
+  const { products, loading, error } = useFetch(
+    `/products?populate=*&[filters][type][$eq]=${props.type}`
+  );
+  const nameBlock = props.type;
+  console.log(products);
   const upFirst = () => {
     if (!nameBlock) return nameBlock;
 
     return nameBlock[0].toUpperCase() + nameBlock.slice(1);
   };
-
   return (
     <div className="recomended">
       <div className="container">
@@ -106,10 +108,13 @@ const Recomended = (props) => {
             </p>
           </div>
           <div className="content">
-            {/* {products.data.map((item) => (
-              <Card item={item} key={item.id} />
-            ))
-            } */}
+            {error? <div>ERROR</div> :(loading ? (
+              <Box sx={{ display: "flex" }}>
+                <CircularProgress />
+              </Box>
+            ) : (
+              products?.data?.map((item) => <Card item={item} key={item.id} />)
+            ))}
             {/* {products.data.map((product) => (
               <Card key={product.id} item={product}/>
             ))} */}
