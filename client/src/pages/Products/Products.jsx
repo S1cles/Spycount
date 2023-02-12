@@ -6,19 +6,17 @@ import { Slider } from "@mui/material";
 // import { yellow } from "@mui/material/colors";
 import useFetch from "../../Components/hooks/useFetch.js";
 
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 // import Checkbox from '@mui/material/Checkbox';
 // import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 // import { orange } from '@mui/material/colors';
 
 const Products = () => {
-
-
   // const [value, setValue] = React.useState('female');
 
   // const handleChange = (event) => {
@@ -28,10 +26,10 @@ const Products = () => {
   const catId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
 
-  const [sort, setSort] = useState('desc');
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-  // };
+  const [sort, setSort] = useState("desc");
+  const handleChange = (event) => {
+    setMaxPrice(event.target.value);
+  };
 
   const { products, loading, error } = useFetch(
     `/sub-categories?[filters][categories][id][$eq]=${catId}`
@@ -103,7 +101,9 @@ const Products = () => {
                   marks
                   min={10}
                   max={1000}
-                  onChange={(e) => setMaxPrice(e.target.value)}
+                  onChange={(e) => {
+                    setMaxPrice(e.target.value);
+                  }}
                   color={"warning"}
                 />
               </div>
@@ -128,7 +128,7 @@ const Products = () => {
                 />
                 <label htmlFor="desc">Filter by highest first</label>
               </div> */}
-              <FormControl color={'warning'}>
+              <FormControl color={"warning"}>
                 <FormLabel id="demo-controlled-radio-buttons-group">
                   Sort By
                 </FormLabel>
@@ -138,20 +138,19 @@ const Products = () => {
                 >
                   <FormControlLabel
                     value="desc"
-                    control={<Radio color={'warning'} />}
+                    control={<Radio color={"warning"} />}
                     label="Filter by highest first"
                     onChange={(e) => setSort("desc")}
-                    
                   />
                   <FormControlLabel
-                  color="secondary"
+                    color="secondary"
                     value="asc"
-                    control={<Radio color={'warning'}/>}
+                    control={<Radio color={"warning"} />}
                     label="Filter by lowest first"
                     onChange={(e) => setSort("asc")}
                   />
                 </RadioGroup>
-              </FormControl>  
+              </FormControl>
             </div>
           </div>
         </div>

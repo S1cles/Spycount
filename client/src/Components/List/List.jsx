@@ -16,7 +16,7 @@ const List = ({ subCat, maxPrice, sort, Categoryid }) => {
   return (
     <div className="list">
       {loading ? (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", minHeight: '100vh' }}>
           <CircularProgress />
         </Box>
       ) : (

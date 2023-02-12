@@ -108,13 +108,15 @@ const Recomended = (props) => {
             </p>
           </div>
           <div className="content">
-            {error? <div>ERROR</div> :(loading ? (
+            {error ? (
+              <div>ERROR</div>
+            ) : loading ? (
               <Box sx={{ display: "flex" }}>
                 <CircularProgress />
               </Box>
             ) : (
               products?.data?.map((item) => <Card item={item} key={item.id} />)
-            ))}
+            )}
             {/* {products.data.map((product) => (
               <Card key={product.id} item={product}/>
             ))} */}
