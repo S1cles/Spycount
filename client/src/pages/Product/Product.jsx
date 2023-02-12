@@ -5,6 +5,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AlignVerticalBottomIcon from "@mui/icons-material/AlignVerticalBottom";
 import { useParams } from "react-router-dom";
 import useFetch from "../../Components/hooks/useFetch";
+import { addToCart } from "../../Redux/cartReducer";
+import { useDispatch } from "react-redux";
 
 const Product = () => {
   const data = [
@@ -13,11 +15,12 @@ const Product = () => {
   ];
 
   const id = useParams().id;
+  const dispatch = useDispatch();
 
   const { products, loading, error } = useFetch(`/products/${id}?populate=*`);
   // console.log(products.data.attributes.img1.data.attributes.url)
   // console.log(process.env.REACT_APP_API_UPLOAD + products.data.attributes.img1.data.attributes.url)
-  console.log(products);
+  // console.log(products.data.id);
 
   const [activeImg, setActiveImg] = useState("img1");
   const [quantity, setQuantity] = useState(1);
@@ -81,7 +84,21 @@ const Product = () => {
               +
             </button>
           </div>
-          <button className="btn_cart">
+          <button
+            className="btn_cart"
+            onClick={() =>
+              dispatch(
+                addToCart({
+                  id: products.data.id,
+                  title: products?.data?.attributes?.title,
+                  desc: products?.data?.attributes?.desc,
+                  img1: products?.data?.attributes?.img1?.data?.attributes?.url,
+                  price: products?.data?.attributes?.price,
+                  quantity,
+                })
+              )
+            }
+          >
             Add to cart <AddShoppingCartIcon />
           </button>
           <div>

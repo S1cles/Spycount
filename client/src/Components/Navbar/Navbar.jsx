@@ -8,9 +8,11 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import { NavLink } from "react-router-dom";
 import './Navbar.scss'
 import Popup from './../Popup/Popup';
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
 
+  const products = useSelector((state) => state.cart.products);
  const [open,setOpen] = useState(false);
 
   return (
@@ -48,7 +50,7 @@ const Navbar = () => {
             <FavoriteIcon />
             <div className="cart" onClick={()=>setOpen(!open)}>
               <ShoppingCartIcon />
-              <span>0</span>
+              <span>{products.length}</span>
             </div>
           </div>
         </div>
