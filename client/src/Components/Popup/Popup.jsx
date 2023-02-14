@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../Redux/cartReducer";
 import { resetCart } from "../../Redux/cartReducer";
+import {loadStripe} from '@stripe/stripe-js';
+import { makeRequest } from './../../makeRequest';
 
 const Popup = () => {
   const products = useSelector((state) => state.cart.products);
@@ -30,6 +32,23 @@ const Popup = () => {
   //     price: 15,
   //   },
   // ];
+
+  const stripePromise = loadStripe('pk_test_51MaoLeIJas7mhGBxzBB7gU1hR14IfGSbBb4Ss3jrZJOxAZP7GjZqoKd1AeWydDFKe1mtWfJyu1eSyDgCsi2Yy7Sh00U2GzyLKE');
+
+  const handlePayment = async() =>{
+    try {
+      const stripe = await stripePromise
+      
+      const res = await makeRequest.post("/orders",{
+        products
+      }) 
+      await stripe.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const totalPrice = () => {
     let total = 0;
@@ -63,7 +82,7 @@ const Popup = () => {
         <span>${totalPrice()}</span>
       </div>
       <div className="buy_btn">
-        <button>PROCEED TO CHECKOUT</button>
+        <button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
         <span
           style={{ color: "red", cursor: "pointer" }}
           onClick={() => dispatch(resetCart())}
