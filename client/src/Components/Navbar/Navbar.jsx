@@ -7,8 +7,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { NavLink } from "react-router-dom";
 import './Navbar.scss'
-import Popup from './../Popup/Popup';
 import { useSelector } from "react-redux";
+import Popup from "../Popup/Popup";
 
 const Navbar = () => {
 
